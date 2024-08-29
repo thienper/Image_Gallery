@@ -56,3 +56,4 @@ module.exports.delete = async (req, res) => {
     await Img.updateOne({ _id: id }, { deleted: true })
     res.redirect("back");
 }
+//
