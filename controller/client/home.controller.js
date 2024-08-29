@@ -22,9 +22,8 @@ module.exports.create = async (req, res) => {
 //[POST] CreatePost /create
 module.exports.createPost = async (req, res) => {
     req.body.deleted = false;
-    req.body.thumbnail = `/img/` + req.file.filename
     const img = new Img(req.body);
-    console.log(req.file.filename)
+    console.log(req.body)
     await img.save();
     res.redirect("/");
 
@@ -49,9 +48,6 @@ module.exports.edit = async (req, res) => {
 module.exports.editPatch = async (req, res) => {
     req.body.deleted = false;
     console.log(req.file)
-    if (req.file) {
-        req.body.thumbnail = `/img/${req.file.filename}`
-    }
     await Img.updateOne({ _id: req.params.id }, req.body)
     res.redirect("back")
 }
