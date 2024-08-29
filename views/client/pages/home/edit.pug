@@ -1,0 +1,100 @@
+extends ../../layouts/default.pug
+block main
+    .content-create
+        h1 Chỉnh Sửa Hình Ảnh
+        form(
+            action=`/edit/${record.id}?_method=PATCH`,
+            id="form-create-image",
+            method="POST"
+            class="form",
+            enctype="multipart/form-data"
+        )
+          div(class="frame")
+            div(class="form-group")
+                label(for="title") Tên Hình 
+                input(
+                    class="form-control"
+                    type="text",
+                    id="title",
+                    name="title",
+                    value=record.title
+                    required
+                    ) 
+            div(
+              class="form-group",
+              upload-image-edit
+              )
+              label(
+                for="", 
+                data-toggle="modal",
+                data-target="#myModal"  
+                class="choose-img",
+                type="button"
+              ) Đổi Ảnh
+                input(
+                    class="form-control myImg"
+                    type="file",
+                    id="thumbnail",
+                    name="thumbnail",
+                    accept ="image/*",
+                    upload-image-input-edit
+                ) 
+              div(
+                class="img-close",
+              )
+                img(
+                  src=record.thumbnail,
+                  class="img-mini",
+                  style ="width: 200px; height: 200px"
+                  upload-image-preview-edit
+                ) 
+                button(type="button" img-close-edit) X
+          div(class="form-group")
+            button(
+              type="submit",
+              class="btn btn-primary"
+            ) Cập Nhật
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //- #myModal.modal
+    //-   .modal-dialog
+    //-     .modal-content
+    //-       .modal-header
+    //-         h1#exampleModalLabel.modal-title.fs-5 Chọn Ảnh
+    //-       .modal-body
+    //-           label(for="", class="qestion") Bạn muốn nhập link ảnh trực tuyến hay chọn ảnh trong máy ? 
+    //-             span (Chọn 1 trong 2)
+    //-           button(class="btn btn-success online") Nhập Link Trực Tuyến
+    //-           br
+    //-           button(class="btn btn-success offline") Chọn Ảnh Trên Thiết Bị Của Bạn
+    //-           label(class="form-group" hidden=true, class="link") Nhập đường dẫn
+    //-             input(type="text", value="", class="form-control" class="link-online")
+    //-           br
+    //-           label(class="form-group", hidden=true, class="device") Chọn ảnh trong máy 
+    //-             input(type="file", value="",class="form-control" class="link-offline" accept ="image/*")
+    //-       .modal-footer
+    //-         button.btn.btn-secondary.back(type='button') Back
+    //-         button(
+    //-           type="button",
+    //-           class="btn btn-danger",
+    //-           data-dismiss="modal"
+    //-         ) Close
+    //-         button.btn.btn-primary(
+    //-           type='button',
+    //-           data-dismiss="modal"
+    //-           ) Save changes

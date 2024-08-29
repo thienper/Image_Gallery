@@ -1,0 +1,34 @@
+extends ../../layouts/default.pug
+block main
+  .add-img 
+    a(
+      class="btn btn-success",
+      href="/create"
+      ) + Thêm Hình
+  .container
+    .row
+      each item in img
+        .col-3.mb-3
+          .product-item
+            .inner-image
+              img(src=item.thumbnail,alt=item.title)
+            .inner-content
+              h3.inner-title #{item.title}
+            .row.info  
+              a(
+                href=`/edit/${item.id}`,
+                class="btn btn-secondary"
+              ) Sửa Hình
+              button(
+                class="btn btn-danger"
+                button-delete
+                data-id=item.id
+                ) Xóa Ảnh
+
+                  
+  form(
+    action=""
+    method = "POST",
+    id="form-delete-item",
+    data-path=`/delete`
+  )
